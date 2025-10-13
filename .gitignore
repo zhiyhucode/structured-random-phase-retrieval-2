@@ -1,0 +1,58 @@
+# UV
+uv.lock
+
+# Mac
+.DS_Store
+
+# PyCharm
+.idea/
+
+# VSCode
+.vscode/
+
+*__pycache__*
+*.pyc
+
+# Files
+*.h5
+*.pth
+*.ckpt
+*.tar.gz
+*.gz
+*-ubyte
+*tmp
+*.tar
+examples/*/*.png
+examples/*/*.gif
+
+# Folders
+/docs/build/
+/docs/source/auto_examples/
+/docs/source/gen_modules/
+/docs/source/**/stubs/*
+
+# Miscellaneous
+/deepinv/datasets/reside/
+/datasets
+examples/*/datasets
+examples/*/results
+examples/*/ckpts
+experimental/figures
+experimental/results
+experimental/runs
+deepinv/version.py
+/saved_models/
+.venv
+build
+deepinv.egg-info
+dist
+wandb/
+mlruns/
+kernels/
+measurements/
+degradations/
+data/
+datasets/
+tmp/
+sg_execution_times.rst
+.qodo
