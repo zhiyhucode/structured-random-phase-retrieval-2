@@ -18,7 +18,8 @@ model:
   structured:
     n_layers: 2
     diagonals:
-      #! in the order of math
+      #* in the order of definition A = \prod_i F_i D_i
+      #* e.g., for 2 layers, D1 then D2 in FD_1FD_2
       [["unit", "uniform"], ["marchenko", "uniform"]] # mag: 'unit', 'marchenko', phase: 'uniform', 'laplace', 'quadrant'
     transforms: ["fourier2", "fourier2"] # 'fourier', 'cosine', 'hadamard' + dimension
     manual_spectrum:

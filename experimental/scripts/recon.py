@@ -25,6 +25,7 @@ from deepinv.physics import RandomPhaseRetrieval, StructuredRandomPhaseRetrieval
 
 
 if __name__ == "__main__":
+    ## Parameters
     config_path = "../config/config.yaml"
     with open(config_path, "r") as file:
         config = yaml.safe_load(file)
@@ -133,8 +134,9 @@ if __name__ == "__main__":
 
     device = dinv.utils.get_freer_gpu() if torch.cuda.is_available() else "cpu"
 
-    # Set up the signal to be reconstructed.
+    # Initialize the ground truth signal
     if signal_mode == ["adversarial"]:
+        # adversarial signal is built with physics, for more information please contact the authors
         pass
     else:
         x = generate_signal(
@@ -153,6 +155,7 @@ if __name__ == "__main__":
     last_oversampling_ratio = -0.1
 
     try:
+        ## Main loop on oversampling ratios
         for i in trange(n_oversampling):
             oversampling_ratio = oversampling_ratios[i]
             if oversampling_ratio - last_oversampling_ratio < 0.05:
@@ -165,6 +168,7 @@ if __name__ == "__main__":
                 logger.info(f"Output size: {output_res}")
             logger.info(f"Oversampling ratio: {oversampling_ratio:.4f}")
             for j in range(n_repeats):
+                # Define forward model
                 if model == "dense":
                     physics = RandomPhaseRetrieval(
                         m=int(oversampling_ratio * img_res**2),
@@ -228,6 +232,7 @@ if __name__ == "__main__":
                 noise = torch.randn_like(y) * noise_percentage * y.mean()
                 y = torch.clip(y + noise, min=0)
 
+                # Reconstruction
                 if "gd" in algo:
                     if "rand" in algo:
                         x_recon = torch.randn_like(x)
@@ -254,7 +259,7 @@ if __name__ == "__main__":
                 elif algo == "spec":
                     x_recon = spectral_methods(y, physics, n_iter=max_iter_spec)
                 else:
-                    raise ValueError(f"Invalid algo: {algo}")
+                    raise ValueError(f"Invalid algorithm: {algo}")
 
                 df.iloc[j, i] = cosine_similarity(x, x_recon).item()
                 logger.info(f"Run {j}, cosine similarity: {df.iloc[j, i]:.4f}")
