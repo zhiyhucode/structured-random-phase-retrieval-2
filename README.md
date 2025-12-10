@@ -1,19 +1,19 @@
-Structured Random Phase Retrieval Model using Optical Diffusers
+Structured Random Phase Retrieval 2
 ===========================================================
 
-This repository contains the source code for the paper "Structured Random Phase Retrieval Model using Optical Diffusers".
+This repository hosts the source code for the paper "[Structured Random Models for Phase Retrieval with Optical Diffusers](https://www.arxiv.org/abs/2510.14490)".
 
 Overview
 --------
 
-We propose a novel type of random model for phase retrieval utilizing structured transforms. It achieves the same reconstruction performance as classical dense random models while reducing the time complexity from $\mathcal{O}(n^2)$ to $\mathcal{O}(n\,\log\,n)$. The implementation is based on the open-source computational imaging library [deepinv](https://github.com/deepinv/deepinv).
+This work proposes a novel type of random models for phase retrieval utilizing structured transforms. It achieves the same reconstruction performance as classical dense random models while reducing the time complexity from $\mathcal{O}(n^2)$ to $\mathcal{O}(n \log n)$. The implementation is based on the open-source computational imaging library [deepinv](https://deepinv.github.io/deepinv/).
 
 Repository Structure
 --------------------
 
-- `deepinv/`: Contains the deepinv source code including the implementation of the structured random phase retrieval model.
-- `experimental/config/`: Contains the configuration to run the reconstruction script.
-- `experimental/scripts/`: Contains the scripts to benchmark the reconstruction performance and time complexity of different random models.
+- `src/`: Contains the implementation of the structured random phase retrieval model.
+- `experiment/config/`: Contains the configuration to run the reconstruction script.
+- `experiment/scripts/`: Contains the scripts to benchmark the reconstruction performance and time complexity of different random models.
 
 Getting Started
 ---------------
@@ -21,27 +21,27 @@ Getting Started
 1. Clone the repository:
    
    ```bash
-   git clone https://github.com/zhiyhucode/structured-random-phase-retrieval-v2.git
-   cd structured-random-phase-retrieval-v2
+   git clone https://github.com/zhiyhucode/structured-random-phase-retrieval-2.git
+   cd structured-random-phase-retrieval-2
    ```
 
 2. Install the required dependencies:
-   1. Run `pip install -e .` to install dependencies including `deepinv` from the `deepinv/` folder;
+   1. Run `pip install -e .` to install dependencies;
 
    1. Optionally, run `pip install --no-build-isolation fast-hadamard-transform`, if you have a GPU;
    
-   Besides the `pip` option, we recommend using [uv](https://docs.astral.sh/uv/getting-started/installation/), which has the same installing process except changing the command `pip` to `uv pip`. 
+   Besides the `pip` option, we recommend using [uv](https://docs.astral.sh/uv/getting-started/installation/), which has the same installation process except replacing the command `pip` to `uv pip`. 
 
    After installing the dependencies, activate the environment using `source .venv/bin/activate`;
 
 3. Navigate to the scripts directory to generate the benchmarks, e.g.:
    
    ```bash
-   cd experimental/scripts
+   cd experiment/scripts
    python recon.py
    ```
    
-   The config to define the experiments is stored in `experimental/config/config.yaml`
+   The config to define the experiments is stored in `experiment/config/config.yaml`
 
 Contributing
 ------------
@@ -63,5 +63,10 @@ Citation
 If you are interested in citing the work, please cite our paper:
 
 ```bibtex
-TBD
+@article{hu2025structured,
+  title={Structured Random Models for Phase Retrieval with Optical Diffusers},
+  author={Hu, Zhiyuan and Mammadova, Fakhriyya and Tachella, Juli{\'a}n and Unser, Michael and Dong, Jonathan},
+  journal={arXiv preprint arXiv:2510.14490},
+  year={2025}
+}
 ```
