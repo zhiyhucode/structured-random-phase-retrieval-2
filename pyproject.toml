@@ -3,10 +3,9 @@ requires = ["setuptools>=61.2"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "deepinv"
-authors = [{name="DeepInverse maintainers (see https://github.com/deepinv/deepinv/blob/main/MAINTAINERS.md)"}]
+name = "structured-random-phase-retrieval-2"
+authors = [{name="Zhiyuan Hu", email="zhiyuan.hu@epfl.ch"}]
 license = "BSD-3-Clause"
-description = "DeepInverse: a PyTorch library for imaging with deep learning"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
@@ -35,17 +34,18 @@ dependencies = [
     "pandas>=2.2.3",
     "seaborn>=0.13.2",
     "ipykernel>=6.29.5",
-    #"fast-hadamard-transform>=1.0.4.post1",
     "black>=25.1.0",
     "ruff>=0.11.3",
     "jupyter>=1.1.1",
     "ipywidgets>=8.1.5",
+    "deepinv>=0.3.6",
     "hadamard-transform>=0.1.3",
     "requests",
     "h5py",
     "natsort",
     "pytest>=8.3.5",
     "loguru>=0.7.3",
+    #"fast-hadamard-transform>=1.0.4.post1",
 ]
 
 [tool.setuptools]

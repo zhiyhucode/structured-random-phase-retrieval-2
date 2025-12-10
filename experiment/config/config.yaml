@@ -1,0 +1,55 @@
+run:
+  model: "structured" # "structured", "dense"
+  name: "test"
+  algo: "gd_spec" # "spec", "gd_rand", "gd_spec"
+  save:
+    enable: True
+    path: "../runs"
+    name: "{model}_{name}_{algo}.csv"
+  verbose: False
+
+signal:
+  shape: [1, 1, 64, 64]
+  mode: ["unit", "shepp-logan"] # ["delta","constant"]
+  adversarial:
+    n_layers: None
+
+model:
+  structured:
+    n_layers: 2
+    diagonals:
+      #* in the order of definition A = \prod_i F_i D_i
+      #* e.g., for 2 layers, D1 then D2 in FD_1FD_2
+      [["unit", "uniform"], ["marchenko", "uniform"]] # mag: 'unit', 'marchenko', phase: 'uniform', 'laplace', 'quadrant'
+    transforms: ["fourier2", "fourier2"] # 'fourier', 'cosine', 'hadamard' + dimension
+    manual_spectrum:
+      mode: "unit" # "unit", "gaussian", "unitary", "circulant", "product"
+      product: None # int if mode is "product"
+    pad_powers_of_two: False
+    shared_weights: False
+    include_zero: False
+  dense:
+    mode: "product" # "gaussian", "unitary", "circulant", "product"
+    product: 3
+  noise_percentage: 0
+
+recon:
+  n_repeats: 50
+  series: "arange"
+  dense:
+    start: 0.1
+    end: 9.1
+    step: 0.1
+    list: []
+  structured:
+    start: 128
+    end: 194
+    list: []
+  spec:
+    max_iter: 5000
+  gd:
+    loss: "intensity"
+    prior: "zero"
+    early_stop: True
+    max_iter: 10000
+    spectrum: "marchenko" # to estimate the Lipschitz constant
